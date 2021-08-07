@@ -27,7 +27,7 @@ import java.lang.Exception
 class CompanyDetailsAdapter ( var viewModel: MainViewModel,var context :Context?,var data:List<CompanyDatum>, val listener: ContentListener) : RecyclerView.Adapter<CustomViewHolders>() {
     var  companyDetails : CompanyDetails? = null
     var row_index : Int ? = -1
-var process : Int ? = -1
+    var process : Int ? = 0
 
     override fun getItemCount(): Int {
 
@@ -46,21 +46,13 @@ var process : Int ? = -1
         viewModel.SeekBarNumber.observe(p0.binding.categoryPrice.context as LifecycleOwner, Observer {
 
             process = it
-         try {
-             if (it >= 0 && it <= 9) {
 
-                 listener.onItemClicked(data.get(0))
+         try {
+                 listener.onItemClicked(data.get(it))
                  p0.binding.categoryPrice.setSelected(row_index == 0);
                  row_index = p0.layoutPosition;
                  //  notifyItemChanged(row_index!!);
-             } else if (it >= 10 && it <= 19) {
-                 listener.onItemClicked(data.get(1))
-                 p0.binding.categoryPrice.setSelected(row_index == 1);
-                 row_index = p0.layoutPosition
-             } else if (it >= 20 && it <= 29)
-                 listener.onItemClicked(data.get(2))
-             p0.binding.categoryPrice.setSelected(row_index == 2);
-             row_index = p0.layoutPosition
+
          }catch (e:Exception){
 
          }

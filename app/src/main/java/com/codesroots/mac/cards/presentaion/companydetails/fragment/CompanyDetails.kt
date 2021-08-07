@@ -99,10 +99,11 @@ var item :CompanyDatum? = null
                 println(i)
 
                 var i = i
-                i = i / 5;
+                i = i / 5
                 i = i * 5;
+
                 Log.i("TAG", "onProgressChanged: "+i)
-              binding!!.textView.text = "$i لقد اخترت : "
+              binding!!.textView.text = "$progress_number لقد اخترت : "
 
                 viewModel.getSeekBarNumber(i / 10)
             }
