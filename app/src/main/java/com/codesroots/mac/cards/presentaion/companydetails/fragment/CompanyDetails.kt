@@ -2,45 +2,30 @@ package com.codesroots.mac.cards.presentaion.companydetails.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.DialogInterface
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import cn.pedant.SweetAlert.SweetAlertDialog
-import com.bumptech.glide.Glide
 import com.codesroots.mac.cards.R
-import com.codesroots.mac.cards.databinding.CompanyDetailsBinding
 import com.codesroots.mac.cards.databinding.CompanyDetailsNewBinding
 import com.codesroots.mac.cards.models.CompanyDatum
 import com.codesroots.mac.cards.presentaion.ClickHandler
-import com.codesroots.mac.cards.presentaion.MainActivity
-import com.codesroots.mac.cards.presentaion.Printer.AidlUtil
 import com.codesroots.mac.cards.presentaion.mainfragment.viewmodel.MainViewModel
 import com.codesroots.mac.cards.presentaion.mainfragment.viewmodel.setImageResourcee
 import com.codesroots.mac.cards.presentaion.reportsFragment.adapters.CompanyDetailsAdapter
 import com.codesroots.mac.cards.presentaion.reportsFragment.adapters.ContentListener
-import com.mazenrashed.printooth.Printooth
-import kotlinx.android.synthetic.main.company_details.*
 import kotlinx.android.synthetic.main.company_details.logo
 import kotlinx.android.synthetic.main.company_details.progressBar
 import kotlinx.android.synthetic.main.company_details.progressBar2
 import kotlinx.android.synthetic.main.company_details.recyler
-import kotlinx.android.synthetic.main.company_details.view.*
 import kotlinx.android.synthetic.main.company_details_new.*
 import kotlinx.android.synthetic.main.dialog_custom_view.view.*
 import org.jetbrains.anko.doAsync
@@ -54,10 +39,9 @@ import java.net.URL
 public class CompanyDetails  : AppCompatActivity() , ContentListener {
 
 var item :CompanyDatum? = null
-    override fun onItemClicked(item: CompanyDatum) {
+    fun onItemClicked(item: CompanyDatum) {
         Company_id = item.id
         progress_number = item.sprice!!
-        this.item = item
             totalvalue = item.sprice
             totalvalue?.let { displaytext(it,item.rprice!!,item.sprice!!) }
 
@@ -90,7 +74,7 @@ var item :CompanyDatum? = null
         binding!!.context = this
         binding!!.listener = ClickHandler()
         binding!!.viewmodel = viewModel
-    //    binding!!.opacitySeek.incrementProgressBy(20)
+       // binding!!.opacitySeek.incrementProgressBy(20)
         // Set a SeekBar change listener
         binding!!.opacitySeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
@@ -99,14 +83,31 @@ var item :CompanyDatum? = null
                 println(i)
 
                 var i = i
-                i = i / 5
-                i = i * 5;
+                i = i / 12
+                i = i * 12;
 
                 Log.i("TAG", "onProgressChanged: "+i)
-              binding!!.textView.text = "$progress_number لقد اخترت : "
 
-                viewModel.getSeekBarNumber(i / 10)
-            }
+                binding!!.textView.text = "$progress_number لقد اخترت : "
+
+              //  viewModel.getSeekBarNumber(i / 5)
+            //    if (i  >= 10) {
+                if (data!!.size > (i / 12)  ) {
+                    item = data!!.get(i / 12)
+
+                    Company_id = data!!.get(i / 12)!!.id
+                    progress_number = data!!.get(i / 12).sprice!!
+                    //  this.item = item
+                    totalvalue = data!!.get(i / 12).sprice
+                    totalvalue?.let {
+                        displaytext(
+                            it,
+                            data!!.get(i / 12).rprice!!,
+                            data!!.get(i / 12).sprice!!
+                        )
+                    }
+                }
+           }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
                 // Do something
@@ -129,8 +130,8 @@ var item :CompanyDatum? = null
        // radioButton = findViewById(minteger)
           radioButton1.id = 0
           radioButton2.id = 1
-          radioButton3.id = 2
-          radioButton4.id = 3
+          //radioButton3.id = 2
+          //radioButton4.id = 3
 
 
         radioGroup!!.setOnCheckedChangeListener { group, checkedId ->
@@ -173,7 +174,7 @@ var item :CompanyDatum? = null
         viewModel.getPackageDetails(packageId!!)
 
         viewModel.CompanyResponseLD?.observe(this, Observer {
-           opacity_seek.max = it.size * 10
+//           opacity_seek.max = it.size * 10
             MainAdapter = CompanyDetailsAdapter(viewModel,this, it,this)
             recyler.layoutManager = GridLayoutManager(this,1,GridLayoutManager.VERTICAL, false)
             recyler.adapter = MainAdapter;
@@ -241,6 +242,10 @@ var item :CompanyDatum? = null
         minteger -= 1
 
         display(minteger)
+    }
+
+    override fun onItemClicked(item: Int) {
+
     }
 
 

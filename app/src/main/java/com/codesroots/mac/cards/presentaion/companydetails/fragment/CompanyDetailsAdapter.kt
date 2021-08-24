@@ -2,24 +2,15 @@ package com.codesroots.mac.cards.presentaion.reportsFragment.adapters
 
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.codesroots.mac.cards.R
 import com.codesroots.mac.cards.databinding.CompanyDetailsItemBinding
-import com.codesroots.mac.cards.databinding.MainAdapterBinding
-import com.codesroots.mac.cards.databinding.ReportItemBinding
 import com.codesroots.mac.cards.models.CompanyDatum
-import com.codesroots.mac.cards.models.MyLocationUseCase
 import com.codesroots.mac.cards.presentaion.ClickHandler
-import com.codesroots.mac.cards.presentaion.MainActivity
 import com.codesroots.mac.cards.presentaion.companydetails.fragment.CompanyDetails
 import com.codesroots.mac.cards.presentaion.mainfragment.viewmodel.MainViewModel
 import java.lang.Exception
@@ -27,7 +18,7 @@ import java.lang.Exception
 class CompanyDetailsAdapter ( var viewModel: MainViewModel,var context :Context?,var data:List<CompanyDatum>, val listener: ContentListener) : RecyclerView.Adapter<CustomViewHolders>() {
     var  companyDetails : CompanyDetails? = null
     var row_index : Int ? = -1
-    var process : Int ? = 0
+var process : Int ? = -1
 
     override fun getItemCount(): Int {
 
@@ -46,13 +37,22 @@ class CompanyDetailsAdapter ( var viewModel: MainViewModel,var context :Context?
         viewModel.SeekBarNumber.observe(p0.binding.categoryPrice.context as LifecycleOwner, Observer {
 
             process = it
-
          try {
-                 listener.onItemClicked(data.get(it))
-                 p0.binding.categoryPrice.setSelected(row_index == 0);
-                 row_index = p0.layoutPosition;
-                 //  notifyItemChanged(row_index!!);
-
+             listener.onItemClicked(it)
+             p0.binding.categoryPrice.setSelected(row_index == 1);
+             row_index = p0.layoutPosition;
+//             if (it >= 0 && it <= 9) {
+//
+//
+//                 //  notifyItemChanged(row_index!!);
+//             } else if (it >= 10 && it <= 19) {
+//                 listener.onItemClicked(data.get(1))
+//                 p0.binding.categoryPrice.setSelected(row_index == 1);
+//                 row_index = p0.layoutPosition
+//             } else if (it >= 20 && it <= 29)
+//                 listener.onItemClicked(data.get(2))
+//             p0.binding.categoryPrice.setSelected(row_index == 2);
+//             row_index = p0.layoutPosition
          }catch (e:Exception){
 
          }
@@ -103,5 +103,5 @@ class CustomViewHolders (
 
 }
 public interface ContentListener {
-    fun onItemClicked(item: CompanyDatum)
+    fun onItemClicked(item: Int)
 }

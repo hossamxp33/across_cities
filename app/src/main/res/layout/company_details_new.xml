@@ -132,6 +132,7 @@
                     android:layout_width="100dp"
                     android:layout_height="0dp"
                     android:progress="0"
+
                     android:background="@drawable/sickbarbackround"
                     android:splitTrack="false"
                     android:thumb="@drawable/seek_vertical"
@@ -216,21 +217,6 @@
 
                             android:textSize="24sp" />
 
-                    <RadioButton
-                            android:id="@+id/radioButton3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/num3"
-                            android:fontFamily="@font/kokn"
-                            android:textSize="24sp" />
-
-                    <RadioButton
-                            android:id="@+id/radioButton4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/num1"
-                            android:fontFamily="@font/kokn"
-                            android:textSize="24sp" />
 
                 </RadioGroup>
 

@@ -1,11 +1,8 @@
 package com.codesroots.mac.cards.presentaion.mainfragment
 
-import android.accessibilityservice.GestureDescription
 import android.app.AlertDialog
 import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.Typeface
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -13,18 +10,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.AdapterView
 import android.widget.Button
-import android.widget.ListView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.codesroots.mac.cards.DataLayer.helper.PreferenceHelper
 import com.codesroots.mac.cards.DataLayer.usecases.openNewTabWindow
@@ -40,21 +33,15 @@ import com.codesroots.mac.cards.presentaion.mainfragment.viewmodel.setImageResou
 import com.codesroots.mac.cards.presentaion.reportsFragment.adapters.CompanyDetailsAdapter
 import com.codesroots.mac.cards.presentaion.reportsFragment.adapters.ContentListener
 import com.mazenrashed.printooth.Printooth
-import com.mazenrashed.printooth.data.printer.Printer
 import com.mazenrashed.printooth.utilities.Printing
-import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum
 import com.nightonke.boommenu.BoomMenuButton
-import com.nightonke.boommenu.ButtonEnum
-import com.nightonke.boommenu.Piece.PiecePlaceEnum
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dialog_custom_view.view.*
 import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.android.synthetic.main.main_fragment.view.*
 import kotlinx.android.synthetic.main.main_fragment.view.recyler
 import java.util.*
 
 class mainFragment  : Fragment(), ContentListener {
-    override fun onItemClicked(item: CompanyDatum) {
+    override fun onItemClicked(item: Int) {
 
     }
 

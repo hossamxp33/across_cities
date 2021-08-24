@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-   binding!!.username.text =  "اهلا بك  " + PreferenceHelper.getUsername()
+//   binding!!.username.text =  "اهلا بك  " + PreferenceHelper.getUsername()
 
         val animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
         animationFadeOut.reset()
