@@ -319,7 +319,7 @@ type = 1
                         pDialog!!.setTitleText("تم اضافة الطلب!")
                         pDialog!!.setContentText("إضغط  لطباعة الطلب")
                         pDialog!!.setConfirmText("طباعة")
-                        pDialog!!.confirmButtonBackgroundColor = R.color.blue
+                     //   pDialog!!.confirmButtonBackgroundColor = R.color.blue
                      
                         pDialog!!.show()
 

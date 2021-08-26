@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -27,13 +28,6 @@ import kotlinx.android.synthetic.main.company_details.progressBar
 import kotlinx.android.synthetic.main.company_details.progressBar2
 import kotlinx.android.synthetic.main.company_details.recyler
 import kotlinx.android.synthetic.main.company_details_new.*
-import kotlinx.android.synthetic.main.dialog_custom_view.view.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.support.v4.runOnUiThread
-import java.io.IOException
-import java.lang.Exception
-import java.net.HttpURLConnection
-import java.net.URL
 
 
 public class CompanyDetails  : AppCompatActivity() , ContentListener {
@@ -76,7 +70,11 @@ var item :CompanyDatum? = null
         binding!!.viewmodel = viewModel
        // binding!!.opacitySeek.incrementProgressBy(20)
         // Set a SeekBar change listener
-        binding!!.opacitySeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        binding!!.opacitySeek.setOnClickListener {
+
+        }
+
+            binding!!.opacitySeek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
                 // Display the current progress of SeekBar
@@ -180,8 +178,15 @@ var item :CompanyDatum? = null
             recyler.adapter = MainAdapter;
 
             data = it
-
-
+item = data!!.get(0)
+            totalvalue = item!!.sprice
+            totalvalue?.let {
+                displaytext(
+                    it,
+                    item!!.rprice!!,
+                    item!!.sprice!!
+                )
+            }
             setImageResourcee(logo,data!!.get(0).src)
             progressBar.setVisibility(View.GONE)
             progressBar2.setVisibility(View.GONE)

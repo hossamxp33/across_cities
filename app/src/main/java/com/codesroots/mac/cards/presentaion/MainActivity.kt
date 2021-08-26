@@ -118,8 +118,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
         animationFadeOut.reset()
-        binding!!.username.clearAnimation()
-        binding!!.username.startAnimation(animationFadeOut)
+        //binding!!.username.clearAnimation()
+        //binding!!.username.startAnimation(animationFadeOut)
 
         binding!!.btnMenu.setOnClickListener{ v ->
             (this).openCloseNavigationDrawer(v)
@@ -210,6 +210,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.more -> {
                 if (checkUserLogin(this)) {
                     PreferenceHelper.setAuthId("0",this)
+                    PreferenceHelper.setToken("0",this)
+
                     Toast.makeText(this, "تم تسجيل خروجك", Toast.LENGTH_SHORT).show()
 
                     val homeIntent = Intent(this, LoginActivity::class.java)

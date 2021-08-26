@@ -48,13 +48,13 @@ class LoginActivity : AppCompatActivity() {
             PreferenceHelper.setUsername(etUsername.text.toString())
 //PreferenceHelper.setToken("0",this)
             if (PreferenceHelper.getToken() != "0" ) {
-            //   "تاني مرة".snack(window.decorView.rootView)
+               "تاني مرة".snack(window.decorView.rootView)
                 if (!isInternetConnectionAvailable(this)) "رجاء تأكد من اتصالك بالانترنت".snack(window.decorView.rootView)
                 viewModel.Login(etUsername.text.toString(),etPassword.text.toString())
             }else {
                 if (!isInternetConnectionAvailable(this)) "رجاء تأكد من اتصالك بالانترنت".snack(window.decorView.rootView)
                 viewModel.LoginFirstTime(etUsername.text.toString(),etPassword.text.toString())
-               // "اول مرة".snack(window.decorView.rootView)
+                "اول مرة".snack(window.decorView.rootView)
             }
         }
 

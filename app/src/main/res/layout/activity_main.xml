@@ -153,19 +153,5 @@
                 app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blue_redius"
-            android:fontFamily="@font/kokn"
-            android:gravity="center"
-            android:padding="10dp"
-            android:text="اهلا بك علاء"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/drawerLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
