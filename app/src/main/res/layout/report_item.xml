@@ -55,7 +55,6 @@
                     android:text="الفئة"
                     android:textColor="@color/colorAccent"
                     android:textSize="14sp"
-                    android:visibility="@{data.cardname != `` ?  View.VISIBLE: View.GONE}"
                     app:fontFamily="@font/fonts"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -69,13 +68,13 @@
                     android:text="@{data.cardname}"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:visibility="@{data.cardname != `` ?  View.VISIBLE: View.GONE}"
                     app:fontFamily="@font/fonts"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name_ui" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+/*                    android:visibility="@{data.cardname != `` ?  View.VISIBLE: View.GONE}"
+        */
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/price_container"
                 android:layout_width="50dp"
@@ -173,7 +172,7 @@
                 android:id="@+id/appCompatImageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:imageResource="@{data.cardname != `` &amp;&amp;  data.cardname != null ? `images/`+data.logo : `1` }"
+                app:imageResource="@{`images/`+data.logo : `1` }"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
