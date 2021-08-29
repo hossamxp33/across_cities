@@ -37,28 +37,19 @@ class ProfileFragment : Fragment() {
 
         val view= inflater.inflate(com.codesroots.mac.cards.R.layout.profile, container, false)
 
-//        view.login.setOnClickListener {
-//            val homeIntent = Intent(context, LoginActivity::class.java)
-//            ( context as MainActivity).startActivity(homeIntent)
-//        }
-//        view.partners.setOnClickListener {
-//            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_frame,Partners())?.addToBackStack("login")?.commit()
-//        }
-//
-//        view.profile.setOnClickListener {
-//            if (checkUserLogin(context!!))
-//                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_frame,ContactFragment())?.addToBackStack("login")?.commit()
-//        }
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
 
         viewModel.getcompanyData()
-        viewModel.CompanyResponseLD?.observe(this , Observer {
-            //lastvalue.append(it.usercredit.toString())
-           // view.my_credit.text =  it.usercredit.toString()
-            view.username.text = PreferenceHelper.getUsername()
+        viewModel.getMyBalance()
 
+        viewModel.CompanyResponseLD?.observe(this , Observer {
+            view.username.text = PreferenceHelper.getUsername()
+        })
+
+        viewModel.MyBalanceResponseLD?.observe(this , Observer {
+            view.my_credit.text = it.account
         })
 
         view.profileCard.setOnClickListener {
@@ -66,13 +57,6 @@ class ProfileFragment : Fragment() {
             val intent = Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null))
             startActivity(intent)
             }
-//
-//        view.favoffers.setOnClickListener {
-//            if (checkUserLogin(context!!))
-//                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_frame,TermsFragment())?.addToBackStack(null)?.commit()
-//        }
-   //     view.profile.setOnClickListener { v -> makeCall(profile.text.toString()) }
-
 
         view.changepw.setOnClickListener {
             val homeIntent = Intent(context, changePassWord::class.java)

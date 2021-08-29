@@ -10,6 +10,7 @@ apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
+
     defaultConfig {
         applicationId "com.codesroots.mac.cards"
         minSdkVersion 19
@@ -23,6 +24,7 @@ android {
         }
 
     }
+
     lintOptions {
         checkReleaseBuilds false
         // Or, if you prefer, you can continue to check for errors in release builds,
@@ -43,17 +45,27 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    packagingOptions {
+        exclude 'META-INF/*'
+
+    }
 }
 
 dependencies {
 
     def room_version = "2.2.3"
     def nav_version = "2.1.0-alpha02"
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def multidex_version = "2.0.1"
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def lifecycle_version = "1.1.1"
+    ext.anko_version = '0.10.7'
+
+    implementation "org.jetbrains.anko:anko:$anko_version"
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+     implementation 'androidx.appcompat:appcompat:1.1.0'
 
     implementation 'androidx.core:core-ktx:1.1.0'
 
@@ -69,8 +81,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
-    implementation 'com.android.support:multidex:1.0.3'
-    // Networking
+     // New version
+    implementation "androidx.multidex:multidex:$multidex_version"    // Networking
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:3.9.1'
@@ -80,14 +92,12 @@ dependencies {
         // excluding org.json which is provided by Android
         exclude group: 'org.json', module: 'json'
     }
-    def lifecycle_version = "1.1.1"
     ext.anko_version = '0.10.7'
     implementation "org.jetbrains.anko:anko:$anko_version"
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     // ViewModel and LiveData
-    implementation platform('com.google.firebase:firebase-bom:26.6.0')
 
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     // alternatively, just ViewModel
@@ -107,7 +117,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"
-///////shimmer
+       ///////shimmer
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
@@ -124,16 +134,21 @@ dependencies {
 
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
-    implementation 'com.google.firebase:firebase-analytics:18.0.2'
 
     implementation 'com.google.firebase:firebase-appindexing:10.0.0'
+    implementation platform('com.google.firebase:firebase-bom:26.6.0')
+
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
 
     implementation 'com.github.mazenrashed:Printooth:1.2.2'
 
     implementation 'com.github.gratusik:AGIKSwipeButton:1.0.1'
     implementation 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:1.0.0'
 
-
+    // JAX-B dependencies for JDK 9+
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
 
 }
 

@@ -7,12 +7,12 @@ typealias CompanyData = List<CompanyDatum>
 
 
 data class CompanyDatum (
-    val id: String? = null,
-    val name: String? = null,
-    val src: String? = null,
-    val sprice: String? = null,
-    val rprice: String? = null,
-    val detailimg:String? = null,
-    val mount :Int?=  null
+    var id: String? = null,
+    var name: String? = null,
+    var src: String? = null,
+    var sprice: String? = null,
+    var rprice: String? = null,
+    var detailimg:String? = null,
+    var mount :Int?=  null
 
 )

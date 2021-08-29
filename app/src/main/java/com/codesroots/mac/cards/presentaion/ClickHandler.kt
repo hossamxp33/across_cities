@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
@@ -68,18 +69,10 @@ var type = 0
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .commit()
 
-
+        SetDefaultColor(context)
+        SelectedItemColor(context.binding!!.setting)
     }
-    fun SwitchToReports( context: Context,comid :String) {
 
-        val bundle = Bundle()
-        //  bundle.putParcelable("cliObj" ,clients[position] )
-        val frag = ReportsFragment()
-        frag.arguments =bundle
-        bundle.putString("packageId" , comid)
-        ( context as MainActivity).supportFragmentManager.beginTransaction()
-            .replace(R.id.main_frame, frag).addToBackStack(null).commit()
-    }
     fun BlutoothName() {
         blutoothName.set( if (Printooth.hasPairedPrinter()) "Un-pair ${Printooth.getPairedPrinter()?.name}" else "Pair with printer")
         if (Printooth.hasPairedPrinter())
@@ -256,13 +249,14 @@ type = 1
     fun SwitchToHome( context: Context) {
 
 
-
         val bundle = Bundle()
         //  bundle.putParcelable("cliObj" ,clients[position] )
         val frag = mainFragment()
         frag.arguments =bundle
         ( context as MainActivity).supportFragmentManager.beginTransaction()
             .replace(R.id.main_frame, frag).addToBackStack(null).commit()
+        SetDefaultColor(context)
+        SelectedItemColor(context.binding!!.home)
     }
     fun SwitchToReports( context: Context) {
 
@@ -273,6 +267,8 @@ type = 1
         ( context as MainActivity).supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_left, R.anim.slide_up)
 
             .replace(R.id.main_frame, frag).addToBackStack(null).commit()
+        SetDefaultColor(context)
+        SelectedItemColor(context.binding!!.reports)
     }
 
     fun SwitchToMore( context: Context) {
@@ -283,6 +279,8 @@ type = 1
         frag.arguments = bundle
         ( context as MainActivity).supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.ttb,0, 0,0)
             .replace(R.id.main_frame, frag).addToBackStack(null).commit()
+        SetDefaultColor(context)
+        SelectedItemColor(context.binding!!.callUs)
 
     }
 
@@ -362,9 +360,7 @@ type = 1
 
 
                                                     }})
-//                                            val homeIntent = Intent(context, Payment::class.java)
-//                                            homeIntent.putExtra("myobj", data)
-//                                            (context as CompanyDetails).startActivity(homeIntent)
+//
                                         }
                                         catch (e: IOException) {
                                             // handle exception
@@ -596,7 +592,20 @@ type = 1
 
 
 
+    ///// Selected Item Color
+    fun SelectedItemColor(img: AppCompatImageView) {
+        img.animate()?.apply {
+            translationX(-30f)
+        }
+        img.setBackgroundResource(R.drawable.under_line)
 
+    }
+    fun SetDefaultColor(context: Context) {
+        (context as MainActivity).binding?.callUs!!.setBackgroundResource(R.color.float_transparent)
+        (context).binding?.home!!.setBackgroundResource(R.color.float_transparent)
+        (context).binding?.reports!!.setBackgroundResource(R.color.float_transparent)
+        (context).binding?.setting!!.setBackgroundResource(R.color.float_transparent)
+    }
 
 
 

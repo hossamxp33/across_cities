@@ -103,7 +103,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="18dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/kokn"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="@id/guid1"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -252,17 +254,18 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginEnd="64dp"
                     android:text="الثمن :"
-                    android:textSize="17sp"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    android:textSize="14sp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    tools:ignore="MissingConstraints" />
 
             <TextView
                     android:id="@+id/total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
-                    android:textSize="17sp"
+                    android:textSize="14sp"
                     app:layout_constraintRight_toLeftOf="@+id/textView4"
                     app:layout_constraintTop_toTopOf="@+id/textView4" />
 
@@ -273,7 +276,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:text="الخصم :"
-                    android:textSize="17sp"
+                    android:textSize="14sp"
                     app:layout_constraintRight_toLeftOf="@+id/total" />
 
             <TextView
@@ -281,7 +284,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
-                    android:textSize="17sp"
+                    android:textSize="14sp"
 
                     app:layout_constraintRight_toLeftOf="@+id/discount" />
 
@@ -292,7 +295,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:text="الصافي :"
-                    android:textSize="17sp"
+                    android:textSize="14sp"
                     app:layout_constraintRight_toLeftOf="@+id/discountvalue"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -301,7 +304,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="TextView"
-                    android:textSize="17sp"
+                    android:textSize="14sp"
                     app:layout_constraintRight_toLeftOf="@+id/textView6"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -310,10 +313,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginRight="32dp"
                     android:onClick="@{() ->  listener.BlutoothName()}"
                     android:text="بلوتوث :"
-                    android:textSize="17sp"
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toRightOf="@+id/blutoothvalue"
                     app:layout_constraintTop_toBottomOf="@+id/totalvalue" />
 
