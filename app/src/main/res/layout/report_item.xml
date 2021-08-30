@@ -39,6 +39,13 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
 
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guid_horizontal2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -102,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@{data.amount}"
+                    android:text="@{data.opno}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:fontFamily="@font/fonts"
@@ -172,7 +179,8 @@
                 android:id="@+id/appCompatImageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:imageResource="@{`images/`+data.logo : `1` }"
+                android:layout_marginRight="9dp"
+                app:imageResource="@{data.cardname != `` &amp;&amp;  data.cardname != null ? `images/`+data.logo : `1` }"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
